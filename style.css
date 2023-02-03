@@ -2,16 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 :root{
   font-size: 62.5%;
 
-  --ff-primary: 'Poppins', sans-serif;
-  --text-color: #303030;
+  --ff-primary: 'Roboto', sans-serif;
+  --text-color: #E1E1E6;
 
-  --hue: 194;
-  --primary-color: hsl(var(--hue), 100%, 63%)
+  --hue: 200;
+
+  --primary-color: hsl(var(--hue), 100%, 63%, 1);
+  --input-bg: hsl(var(--hue), 65%, 7%, 1);
+  --btn-search-bg: hsla(var(--hue), 91%, 25%, 1);
+  --table-header-bg: hsla(var(--hue), 72%, 13%, 1);
+  --table-bg-1: hsla(var(--hue), 61%, 6%, 0.5);
+  --table-bg-2: hsla(var(--hue),  65%, 7%, 1);
+  --remove-btn: hsla(20, 91%, 66%, 1);
+  --border-table: hsla(var(--hue), 31%, 42%, 1);
 }
 
 .sr-only{
@@ -29,7 +38,7 @@
 body{
   font-size: 1.6rem;
   color: var(--text-color);
-  background-color: #fafafa;
+  background-color: #000000;
 }
 
 body *{
@@ -37,9 +46,28 @@ body *{
 }
 
 #app{
-  max-width: 500px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+
+}
+
+.border-shadow-all{
+  border-radius: .8rem;
+  box-shadow: 0 0 0 2px var(--border-table);
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--input-bg);
+  color: #4E5455;
+  font-size: 4rem;
+  font-weight: bold;
+  gap: 6rem;
+  border-radius:  0 0 .8rem .8rem ;
+  min-height: 60vh;
 }
 
 header{
@@ -47,7 +75,7 @@ header{
   align-items: center;
   justify-content: space-between;
 
-  margin: 2.5rem 0;
+  margin: 10rem 0;
 }
 
 
@@ -59,71 +87,100 @@ header h1{
 .search{
   display: flex;
   align-items: center;
+  justify-content: right;
+  width: 50%;
+  height: 4.8rem;
+
 }
 
 
 .search input{
-  height: 3.2rem;
-  border: 1px solid #ccc;
-  border-radius: .4rem 0 0 .4rem;
-  padding: 0 .8rem;
-}
-
-
-.search button{
-  background-color: var(--primary-color);
-  border-radius: 0 .4rem .4rem 0;
-  height: 3.2rem;
+  height: 100%;
+  border-radius: .4rem;
   border: none;
-  padding: 0 1rem;
+  padding: 0 .8rem;
+  margin-right: .8rem;
+  background-color: var(--input-bg);
+  width: 100%;
+  color: #fff;
+  font-size: 1.6rem;
 }
 
-.search button:hover{
-  filter: brightness(1.1);
+
+.add{
+  background-color: var(--btn-search-bg);
+  border-radius: .4rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 1.2rem;
+  font-weight: 700;
+  transition: .4s ease-in-out;
+}
+
+.add:hover{
+  background-color: #fff;
   cursor: pointer;
+  color: var(--btn-search-bg);
+}
+
+.add:hover svg{
+  fill: var(--btn-search-bg);
+}
+
+.add svg{
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  fill: #fff;
+  transition: .4s ease-in-out;
 }
 
 table{
   width: 100%;
   border-collapse: collapse;
-
-  box-shadow: 0 1rem 1rem -1rem rgba(0, 0, 0, 0.3);
 }
 
 
 
 table *{
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   color: var(--text-color);
+  font-weight: 700;
 }
 
 
 table th{
-  background-color: var(--primary-color);
+  background-color: var(--table-header-bg);
   text-align: left;
-  font-weight: normal;
-  padding: 1.5rem;
+  padding: 1.6rem 0;
 }
 
 table th:first-child{
-  border-top-left-radius: .4rem;
-
+  border-top-left-radius: .8rem;
+  padding-left: 4.0rem;
 }
 
 table th:last-child{
-  border-top-right-radius: .4rem;
+  border-top-right-radius: .8rem;
+  padding-right: 1.0rem;
 }
 
 table tr:nth-child(even){
-  background-color: #f5f5f5;
+  background-color: var(--table-bg-1)
 }
 
 table tr:nth-child(odd){
-  background-color: #ddd;
+  background-color: var(--table-bg-2)
+}
+
+table tr:last-child{
+  border-bottom-left-radius: .8rem;
+  border-bottom-right-radius: .8rem;
 }
 
 table td{
-  padding: 1.5rem;
   text-align: left;
 }
 
@@ -131,6 +188,7 @@ td.user{
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 3.6rem 0 3.6rem 4.0rem ;
 }
 
 td.user a{
@@ -139,6 +197,10 @@ td.user a{
 
 td.user a p{
   font-weight: bold;
+}
+
+td.user span{
+  font-weight: 400;
 }
 
 td.user img{
@@ -153,6 +215,10 @@ td.user img{
 td .remove{
   background: none;
   border: none;
-  color: red;
+  color: var(--remove-btn)
+}
+
+.remove:hover{
+  cursor: pointer;
 }
 
